@@ -386,6 +386,11 @@ void vte_terminal_set_mouse_autohide(VteTerminal *terminal,
 _VTE_PUBLIC
 gboolean vte_terminal_get_mouse_autohide(VteTerminal *terminal) _VTE_CXX_NOEXCEPT _VTE_GNUC_NONNULL(1);
 
+/* Control how long the terminal will wait for EOS before exiting */
+_VTE_PUBLIC
+void vte_terminal_set_eos_dwell_time(VteTerminal *terminal,
+                                     int setting) _VTE_CXX_NOEXCEPT _VTE_GNUC_NONNULL(1);
+
 /* Reset the terminal, optionally clearing the tab stops and line history. */
 _VTE_PUBLIC
 void vte_terminal_reset(VteTerminal *terminal,

@@ -5684,6 +5684,32 @@ catch (...)
 }
 
 /**
+ * vte_terminal_set_eos_dwell_time:
+ * @terminal: a #VteTerminal
+ * @setting: how long the terminal should wait for EOS before exiting
+ *
+ * Changes the maximum EOS dwell time. On command exit, if the PTY is still
+ * active, the terminal will wait up to this many seconds before exiting.
+ * This can introduce unnecessary delay if the dwell time is too long, but
+ * prevents data loss from commands which run in the background.
+ */
+void
+vte_terminal_set_eos_dwell_time(VteTerminal *terminal,
+                                int setting) noexcept
+try
+{
+	g_return_if_fail(VTE_IS_TERMINAL(terminal));
+
+        if (IMPL(terminal)->set_eos_dwell_time(setting))
+		//(no prop currently implemented)
+                ;//g_object_notify_by_pspec(G_OBJECT(terminal), pspecs[PROP_MOUSE_POINTER_AUTOHIDE]);
+}
+catch (...)
+{
+        vte::log_exception();
+}
+
+/**
  * vte_terminal_set_pty:
  * @terminal: a #VteTerminal
  * @pty: (allow-none): a #VtePty, or %NULL

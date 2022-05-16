@@ -434,6 +434,7 @@ public:
         gboolean m_text_modified_flag;
         gboolean m_text_inserted_flag;
         gboolean m_text_deleted_flag;
+        int m_eos_dwell_time{2};
 
 	/* Scrolling options. */
         bool m_fallback_scrolling{true};
@@ -1406,6 +1407,7 @@ public:
         bool set_font_scale(double scale);
         bool set_input_enabled(bool enabled);
         bool set_mouse_autohide(bool autohide);
+        bool set_eos_dwell_time(int time);
         bool set_rewrap_on_resize(bool rewrap);
         bool set_scrollback_lines(long lines);
         bool set_fallback_scrolling(bool set);

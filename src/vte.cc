@@ -3252,7 +3252,7 @@ Terminal::child_watch_done(pid_t pid,
                 m_child_exit_status = status;
                 m_child_exited_after_eos_pending = true;
 
-                m_child_exited_eos_wait_timer.schedule_seconds(2); // FIXME: better value?
+                m_child_exited_eos_wait_timer.schedule_seconds(m_eos_dwell_time);
         } else {
                 m_child_exited_after_eos_pending = false;
 
@@ -9889,6 +9889,16 @@ Terminal::set_mouse_autohide(bool autohide)
                 match_hilite_update();
                 apply_mouse_cursor();
         }
+        return true;
+}
+
+bool
+Terminal::set_eos_dwell_time(int time)
+{
+        if (time == m_eos_dwell_time)
+                return false;
+
+	m_eos_dwell_time = time;
         return true;
 }
 
